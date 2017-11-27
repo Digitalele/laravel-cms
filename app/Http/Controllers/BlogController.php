@@ -16,7 +16,12 @@ class BlogController extends Controller
     public function index()
     {
     		//use latest instead that is a method from laravel
-    		$posts = Post::with('author')->latestFirst()->simplePaginate(3);
+    		$posts = Post::with('author')
+    								->latestFirst()
+    								->published()
+    								->simplePaginate($this->limit);
 				return view("blog.index", compact('posts'));
     }
 }
+
+//compact for passing data from controller to view

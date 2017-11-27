@@ -1,11 +1,16 @@
 <?php
 
+//Model
+
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+		//make as object of Carbon
+		protected $dates = ['published_at'];
 
 		public function author()
 		{
@@ -26,12 +31,19 @@ class Post extends Model
 
     public function getDateAttribute($value)
     {
-				return $this->created_at->diffForHumans();
+    		//make shure that published_at ! null
+				return is_null($this->published_at) ? '' : $this->published_at->diffForHumans();
     }
 
-    public function scopeLatestFirst()
+    public function scopeLatestFirst($query)
     {
-    		$this->orderBy('created_at', 'desc');
+    		$query->orderBy('created_at', 'desc');
+    }
+
+    public function scopePublished($query)
+    {	
+    		//for time use carbon instead of NOW()
+    		return $query->where('published_at', '<=', Carbon::now());
     }
 
 }
