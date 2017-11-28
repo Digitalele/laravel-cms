@@ -31,8 +31,7 @@ class Post extends Model
 
     public function getDateAttribute($value)
     {
-    		//make shure that published_at ! null
-				return is_null($this->published_at) ? '' : $this->published_at->diffForHumans();
+        return is_null($this->published_at) ? '' : $this->published_at->diffForHumans();
     }
 
     public function scopeLatestFirst($query)

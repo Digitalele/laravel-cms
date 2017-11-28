@@ -23,10 +23,11 @@ class BlogController extends Controller
 				return view("blog.index", compact('posts'));
     }
 
-    public function show($id)
+    public function show(Post $post)
     {
     		//find post by id 
-    		$post = Post::findOrFail($id);
+    		//we can also inject the model like function parameter above
+    		// $post = Post::published()->findOrFail($id);
 				return view("blog.show", compact('post'));
     }
 }

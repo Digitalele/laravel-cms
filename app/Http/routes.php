@@ -19,9 +19,10 @@ Route::get('/', [
 //{slug or id}
 
 Route::get('/blog/{post}', [
-	'uses' => 'BlogController@show',
-	'as'   => 'blog.show'
+    'uses' => 'BlogController@show',
+    'as'   => 'blog.show'
 ]);
+
 
 /*
 |--------------------------------------------------------------------------
