@@ -32,6 +32,8 @@ class BlogController extends Controller
 
     public function category(Category $category)
     {
+        $categoryName = $category->title;
+
         $categories = Category::with(['posts' => function($query) {
                 $query->published();
         }])->orderBy('title', 'asc')->get();
@@ -43,7 +45,7 @@ class BlogController extends Controller
                           ->published()
                           ->simplePaginate($this->limit);
 
-        return view("blog.index", compact('posts', 'categories'));
+        return view("blog.index", compact('posts', 'categories', 'categoryName'));
     }
 
 
