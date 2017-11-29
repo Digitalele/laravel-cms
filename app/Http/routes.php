@@ -11,12 +11,15 @@
 |
 */
 
+//Index
+
 Route::get('/', [
 	'uses' => 'BlogController@index',
 	'as' 	 => 'blog'
 ]);
 
-//{slug or id}
+
+// /blog/id
 
 Route::get('/blog/{post}', [
     'uses' => 'BlogController@show',
@@ -24,9 +27,19 @@ Route::get('/blog/{post}', [
 ]);
 
 
+// /category/id
+
 Route::get('/category/{category}', [
     'uses' => 'BlogController@category',
     'as'   => 'category'
+]);
+
+
+// /author/id
+
+Route::get('/author/{author}', [
+    'uses' => 'BlogController@author',
+    'as'   => 'author'
 ]);
 
 

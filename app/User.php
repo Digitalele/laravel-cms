@@ -26,8 +26,16 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    
     public function posts()
     {
-        return $this->hasMany(Post::class);
+    		//relation between post and authot id like foreign key
+        return $this->hasMany(Post::class, 'author_id');
+    }
+
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

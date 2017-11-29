@@ -9,6 +9,7 @@ use App\Http\Requests;
 //Call the controller class method
 use App\Post;
 use App\Category;
+use App\User;
 
 class BlogController extends Controller
 {
@@ -39,6 +40,22 @@ class BlogController extends Controller
                           ->simplePaginate($this->limit);
 
         return view("blog.index", compact('posts', 'categoryName'));
+    }
+
+    public function author(User $author)
+    {
+        //dd($author->name);
+        
+        //route mode binding
+        $authorName = $author->name;
+        
+        $posts = $author->posts()
+                          ->with('category')
+                          ->latestFirst()
+                          ->published()
+                          ->simplePaginate($this->limit);
+
+        return view("blog.index", compact('posts', 'authorName'));
     }
 
 
