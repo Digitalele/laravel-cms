@@ -17,26 +17,19 @@ class BlogController extends Controller
 		
     public function index()
     {
-        $categories = Category::with(['posts' => function($query) {
-                $query->published();
-        }])->orderBy('title', 'asc')->get();
 
 		//use latest instead that is a method from laravel
 		$posts = Post::with('author')
 								->latestFirst()
 								->published()
 								->simplePaginate($this->limit);
-		return view("blog.index", compact('posts', 'categories'));
+		return view("blog.index", compact('posts'));
     }
 
 
     public function category(Category $category)
     {
         $categoryName = $category->title;
-
-        $categories = Category::with(['posts' => function($query) {
-                $query->published();
-        }])->orderBy('title', 'asc')->get();
         
         //route mode binding
         $posts = $category->posts()
@@ -45,7 +38,7 @@ class BlogController extends Controller
                           ->published()
                           ->simplePaginate($this->limit);
 
-        return view("blog.index", compact('posts', 'categories', 'categoryName'));
+        return view("blog.index", compact('posts', 'categoryName'));
     }
 
 
@@ -53,7 +46,7 @@ class BlogController extends Controller
     {
     	//find post by id 
     	//we can also inject the model like function parameter above
-		return view("blog.show", compact('post', 'categories'));
+		return view("blog.show", compact('post'));
     }
 }
 
