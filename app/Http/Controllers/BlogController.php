@@ -29,18 +29,20 @@ class BlogController extends Controller
 		return view("blog.index", compact('posts', 'categories'));
     }
 
-    public function category($id)
+
+    public function category(Category $category)
     {
         $categories = Category::with(['posts' => function($query) {
                 $query->published();
         }])->orderBy('title', 'asc')->get();
+        
+        //route mode binding
+        $posts = $category->posts()
+                          ->with('author')
+                          ->latestFirst()
+                          ->published()
+                          ->simplePaginate($this->limit);
 
-        //use latest instead that is a method from laravel
-        $posts = Post::with('author')
-                                ->latestFirst()
-                                ->published()
-                                ->where('category_id', $id)
-                                ->simplePaginate($this->limit);
         return view("blog.index", compact('posts', 'categories'));
     }
 
