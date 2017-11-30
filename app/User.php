@@ -5,6 +5,8 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use GrahamCampbell\Markdown\Facades\Markdown;
+
 
 class User extends Authenticatable
 {
@@ -31,6 +33,12 @@ class User extends Authenticatable
     {
     		//relation between post and authot id like foreign key
         return $this->hasMany(Post::class, 'author_id');
+    }
+
+
+    public function getBioHtmlAttribute($value)
+    {
+        return $this->bio ? Markdown::convertToHtml(e($this->bio)) : NULL;
     }
 
 
