@@ -43,6 +43,7 @@ Route::get('/author/{author}', [
 ]);
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -55,5 +56,10 @@ Route::get('/author/{author}', [
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+    Route::auth();
+		Route::get('/home', 'HomeController@index');
 });
+
+
+
+
