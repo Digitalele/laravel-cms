@@ -1,15 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-	<div class="login-box">
-	  <div class="login-logo">
-		<a href="../../index2.html"><b>Laravel</b> CMS</a>
-	  </div>
-	  <!-- /.login-logo -->
-		<div class="login-box">
-			<p class="login-box-msg">Sign in to start your session</p>
-
-				<form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">Login</div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -60,13 +58,9 @@
                             </div>
                         </div>
                     </form>
-
-			<br>
-			<a href="#">I forgot my password</a><br>
-
-		</div>
-	  <!-- /.login-box-body -->
-	</div>
-<!-- /.login-box -->
-
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
