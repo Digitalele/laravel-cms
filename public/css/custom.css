@@ -1,3 +1,9 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+
 body {
     font-family: 'Raleway', sans-serif;
     padding-top: 70px;
@@ -333,3 +339,13 @@ ul.social-icons li {
 span.required {
     color: red;
 }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
