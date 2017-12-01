@@ -43,7 +43,6 @@ Route::get('/author/{author}', [
 ]);
 
 
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -56,9 +55,26 @@ Route::get('/author/{author}', [
 */
 
 Route::group(['middleware' => ['web']], function () {
-    Route::auth();
-		Route::get('/home', 'Admin\HomeController@index');
+    //
 });
+
+Route::group(['middleware' => ['web']], function () {
+    Route::auth();
+	Route::get('/home', 'Admin\HomeController@index');
+    Route::resource('/admin/blog', 'Admin\BlogController');
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routess
+|-------------------------------------------------------------------------
+*/
+
+
+
+
+
 
 
 

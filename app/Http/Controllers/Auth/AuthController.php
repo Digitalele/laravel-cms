@@ -30,8 +30,8 @@ class AuthController extends Controller
      */
     protected $redirectTo = '/home';
 
-     /**
-     * Where to redirect users after logout / registration.
+    /**
+     * Where to redirect users after logout
      *
      * @var string
      */
@@ -44,7 +44,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'logout']);
+        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
     /**
@@ -58,7 +58,7 @@ class AuthController extends Controller
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
+            'password' => 'required|min:6|confirmed',
         ]);
     }
 
@@ -77,13 +77,6 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * Overwrite registration form for hide.
-     *
-     * 
-     * 
-     */
-    
     public function showRegistrationForm()
     {
         abort(404);
@@ -91,6 +84,6 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        abort(404);
+        abor(404);
     }
 }
