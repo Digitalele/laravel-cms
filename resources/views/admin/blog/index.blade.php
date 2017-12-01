@@ -26,6 +26,7 @@
 						<thead>
 							<tr>
 								<td>Action</td>
+								<td>Delete</td>
 								<td>Title</td>
 								<td>Author</td>
 								<td>Category</td>
@@ -54,13 +55,27 @@
 									Web Programming
 								</td>
 								<td>
-									2016
+									2018
 								</td>
 							</tr>
 						</tbody>
 					 </table>
 				  </div>
 				  <!-- /.box-body -->
+				  <div class="box-footer clearfix">
+				  	<div class="pull-left">
+					  	<ul class="pagination no-margin">
+					  		<li><a href="">&laquo;</a></li>
+					  		<li><a href="">1</a></li>
+					  		<li><a href="">2</a></li>
+					  		<li><a href="">3</a></li>
+					  		<li><a href="">&raquo;</a></li>
+					  	</ul>	
+				  	</div>
+				  	<div class="pull-right">
+				  		<small>4 items</small>
+				  	</div>
+				  </div>
 				</div>
 				<!-- /.box -->
 			  </div>
