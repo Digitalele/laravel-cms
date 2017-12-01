@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Post;
 
 
 class BlogController extends AdminController
@@ -15,7 +16,8 @@ class BlogController extends AdminController
      */
     public function index()
     {
-        return view("admin.blog.index");
+        $posts = Post::all();
+        return view("admin.blog.index", compact('posts'));
     }
 
     /**

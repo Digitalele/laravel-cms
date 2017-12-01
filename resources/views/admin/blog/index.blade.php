@@ -25,7 +25,7 @@
 					 <table class="table table-bordered">
 						<thead>
 							<tr>
-								<td>Action</td>
+								<td width="80">Action</td>
 								<td>Delete</td>
 								<td>Title</td>
 								<td>Author</td>
@@ -34,30 +34,35 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>
-									<a href="#" class="btn btn-xs btn-default">
-										<i class="fa fa-edit"></i>
-									</a>
-								</td>
-								<td>
-									<a href="#" class="btn btn-xs btn-danger">
-										<i class="fa fa-times"></i>
-									</a>
-								</td>
-								<td>
-									Lorem ipsum dolor.
-								</td>
-								<td>
-									Gabriele Dolfi
-								</td>
-								<td>
-									Web Programming
-								</td>
-								<td>
-									2018
-								</td>
-							</tr>
+
+						  @foreach ($posts as $post)
+									<tr>
+										<td>
+											<a href="{{ route('admin.blog.edit', $post->id) }}" class="btn btn-xs btn-default">
+												<i class="fa fa-edit"></i>
+											</a>
+										</td>
+										<td>
+											<a href="{{ route('admin.blog.destroy', $post->id) }}" class="btn btn-xs btn-danger">
+												<i class="fa fa-times"></i>
+											</a>
+										</td>
+										<td>
+											{{ $post->title }}
+										</td>
+										<td>
+											{{ $post->author->name }}
+										</td>
+										<td>
+											{{ $post->category->title }}
+										</td>
+										<td>
+											{{ $post->created_at }}
+										</td>
+								</tr>
+						  @endforeach
+
+							
 						</tbody>
 					 </table>
 				  </div>
