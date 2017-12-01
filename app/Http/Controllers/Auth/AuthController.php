@@ -30,6 +30,13 @@ class AuthController extends Controller
      */
     protected $redirectTo = '/home';
 
+     /**
+     * Where to redirect users after logout / registration.
+     *
+     * @var string
+     */
+    protected $redirectAfterLogout = '/login';
+
     /**
      * Create a new authentication controller instance.
      *
@@ -68,5 +75,22 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    /**
+     * Overwrite registration form for hide.
+     *
+     * 
+     * 
+     */
+    
+    public function showRegistrationForm()
+    {
+        abort(404);
+    }
+
+    public function register(Request $request)
+    {
+        abort(404);
     }
 }
