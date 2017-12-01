@@ -9,6 +9,7 @@ use App\Post;
 
 class BlogController extends AdminController
 {
+    protected $limit = 10;
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +17,7 @@ class BlogController extends AdminController
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::with('category', 'author')->latest()->paginate($this->limit);
         return view("admin.blog.index", compact('posts'));
     }
 

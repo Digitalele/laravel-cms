@@ -28,9 +28,9 @@
 								<td width="80">Action</td>
 								<td>Delete</td>
 								<td>Title</td>
-								<td>Author</td>
-								<td>Category</td>
-								<td>Date</td>
+								<td width="120">Author</td>
+								<td width="150">Category</td>
+								<td width="170">Date</td>
 							</tr>
 						</thead>
 						<tbody>
@@ -57,7 +57,8 @@
 											{{ $post->category->title }}
 										</td>
 										<td>
-											{{ $post->created_at }}
+											<abbr title="{{ $post->dateFormatted(true) }}">{{ $post->dateFormatted() }}</abbr>
+											{!! $post->publicationLabel() !!}
 										</td>
 								</tr>
 						  @endforeach
@@ -69,16 +70,11 @@
 				  <!-- /.box-body -->
 				  <div class="box-footer clearfix">
 				  	<div class="pull-left">
-					  	<ul class="pagination no-margin">
-					  		<li><a href="">&laquo;</a></li>
-					  		<li><a href="">1</a></li>
-					  		<li><a href="">2</a></li>
-					  		<li><a href="">3</a></li>
-					  		<li><a href="">&raquo;</a></li>
-					  	</ul>	
+					  	{{ $posts->render() }}
 				  	</div>
 				  	<div class="pull-right">
-				  		<small>4 items</small>
+				  		@php $postCount = $posts->count() @endphp
+				  		<small>{{ $postCount }} {{ str_plural('Item', $postCount) }}</small>
 				  	</div>
 				  </div>
 				</div>
