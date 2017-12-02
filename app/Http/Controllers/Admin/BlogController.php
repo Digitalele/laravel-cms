@@ -39,9 +39,19 @@ class BlogController extends AdminController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\PostRequest $request)
     {
-        //
+        // $this->validate($request, [
+        //     'title'         => 'required',
+        //     'slug'          => 'required|unique:posts',
+        //     'body'          => 'required',
+        //     'published_at'  => 'date_format:Y-m-d',
+        //     'category_id'   => 'required'
+        // ]);
+
+        $request->user()->posts()->create($request->all());
+
+        return redirect('/admin/blog')->with('message', 'Your post was created successfully!');
     }
 
     /**

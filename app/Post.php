@@ -10,6 +10,9 @@ use GrahamCampbell\Markdown\Facades\Markdown;
 
 class Post extends Model
 {
+    //mass assign
+    protected $fillable = ['title', 'slug', 'excerpt', 'body', 'published_at', 'category_id'];
+
 	//make as object of Carbon
 	protected $dates = ['published_at'];
 
@@ -23,6 +26,14 @@ class Post extends Model
     {  
         return $this->belongsTo(Category::class);
     }
+
+
+    //mutator, set null if not insert
+    public function setPublishedAtAttribute($value)
+    {
+        $this->attributes['published_at'] = $value ?: null;
+    }
+    
 
 
     public function getImageUrlAttribute($value)
