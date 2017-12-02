@@ -9,7 +9,7 @@ use App\Post;
 
 class BlogController extends AdminController
 {
-    protected $limit = 10;
+    protected $limit = 5;
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +18,8 @@ class BlogController extends AdminController
     public function index()
     {
         $posts = Post::with('category', 'author')->latest()->paginate($this->limit);
-        return view("admin.blog.index", compact('posts'));
+        $postCount = Post::count();
+        return view("admin.blog.index", compact('posts', 'postCount'));
     }
 
     /**
@@ -26,9 +27,10 @@ class BlogController extends AdminController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        dd('create method');
+    public function create(Post $post)
+    {   
+        $post = new Post();
+        return view('admin.blog.create', compact('post'));
     }
 
     /**

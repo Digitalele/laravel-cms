@@ -11,7 +11,13 @@
 			<small>Display All blog posts</small>
 		  </h1>
 		  <ol class="breadcrumb">
-			<li class="active"><i class="fa fa-dashboard"></i> Dashboard</li>
+				<li>
+					<a href="{{ url('/home') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
+				</li>
+				<li class="active">
+					<a href="{{ route('admin.blog.index') }}">Blog</a>
+				</li>
+				<li class="active"></li>
 		  </ol>
 		</section>
 
@@ -20,8 +26,20 @@
 			<div class="row">
 			  <div class="col-xs-12">
 				<div class="box">
+					<div class="box-header">
+						<div class="pull-left">
+							<a href="{{ route('admin.blog.create') }}" class="btn btn-success">Add New</a>
+						</div>
+					</div>
 				  <!-- /.box-header -->
 				  <div class="box-body ">
+				  
+				  	@if (! $posts->count())
+					  	<div class="alert alert-warning">
+					  		 <strong>No records found</strong>
+					  	</div>
+				  	@else
+					
 					 <table class="table table-bordered">
 						<thead>
 							<tr>
@@ -64,8 +82,9 @@
 						  @endforeach
 
 							
-						</tbody>
+							</tbody>
 					 </table>
+					 @endif
 				  </div>
 				  <!-- /.box-body -->
 				  <div class="box-footer clearfix">
@@ -73,7 +92,6 @@
 					  	{{ $posts->render() }}
 				  	</div>
 				  	<div class="pull-right">
-				  		@php $postCount = $posts->count() @endphp
 				  		<small>{{ $postCount }} {{ str_plural('Item', $postCount) }}</small>
 				  	</div>
 				  </div>

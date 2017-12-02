@@ -167,6 +167,7 @@ return [
 
         GrahamCampbell\Markdown\MarkdownServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
 
 
     ],
@@ -221,6 +222,8 @@ return [
 
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 
