@@ -41,7 +41,8 @@ class Post extends Model
 		$imageUrl = "";
     	if  (! is_null($this->image))
     	{
-    		$imagePath = public_path() . "/img/" . $this->image;
+            $directory = config('cms_config.image.directory');
+    		$imagePath = public_path() . "/{$directory}/" . $this->image;
    			if (file_exists($imagePath)) $imageUrl = asset("img/" . $this->image);
     	}
 
