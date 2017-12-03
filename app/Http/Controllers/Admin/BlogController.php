@@ -10,6 +10,13 @@ use App\Post;
 class BlogController extends AdminController
 {
     protected $limit = 5;
+    protected $uploadPath;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->uploadPath = public_path('img');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -42,17 +49,39 @@ class BlogController extends AdminController
     public function store(Requests\PostRequest $request)
     {
         // $this->validate($request, [
-        //     'title'         => 'required',
-        //     'slug'          => 'required|unique:posts',
-        //     'body'          => 'required',
-        //     'published_at'  => 'date_format:Y-m-d',
-        //     'category_id'   => 'required'
+        //     'title'       => 'required',
+        //     'slug'        => 'required|unique:posts',
+        //     'body'        => 'required',
+        //     'published_at'=> 'date_format:Y-m-d',
+        //     'category_id' => 'required'
         // ]);
-
-        $request->user()->posts()->create($request->all());
+        
+        //hanlde file 
+        $data = $this->handleRequest($request);
+        $request->user()->posts()->create($data);
 
         return redirect('/admin/blog')->with('message', 'Your post was created successfully!');
     }
+
+    
+    private function handleRequest($request)
+    {
+        $data = $request->all();
+
+        if($request->hasFile('image'));
+        {
+            $image       = $request->file('image');
+            $fileName    = $image->getClientOriginalName();
+            $destination = $this->uploadPath;
+
+            $image->move($destination, $fileName);
+
+            $data['image'] = $fileName;
+        }
+        return $data;
+    }
+
+
 
     /**
      * Display the specified resource.
