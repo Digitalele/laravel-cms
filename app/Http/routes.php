@@ -58,6 +58,14 @@ Route::group(['middleware' => ['web']], function () {
     //
 });
 
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|-------------------------------------------------------------------------
+*/
+
+
 Route::group(['middleware' => ['web']], function () {
     Route::auth();
 	Route::get('/home', 'Admin\HomeController@index');
@@ -67,9 +75,36 @@ Route::group(['middleware' => ['web']], function () {
 
 /*
 |--------------------------------------------------------------------------
-| Admin Routess
+| Site Routes
 |-------------------------------------------------------------------------
 */
+Route::get('/home', [
+    'uses' => 'SiteController@getIndex',
+    'as'   => 'home'
+]);
+
+Route::get('/about', [
+    'uses' => 'SiteController@getAbout',
+    'as'   => 'about'
+]);
+
+/*
+|--------------------------------------------------------------------------
+| Mailer Routes
+|-------------------------------------------------------------------------
+*/
+
+Route::get('/contact', [
+    'uses' => 'SiteController@getContact',
+    'as'   => 'contact'
+]);
+
+Route::get('/contact', 'SiteController@postContact');
+
+
+
+
+
 
 
 

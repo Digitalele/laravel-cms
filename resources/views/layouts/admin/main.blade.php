@@ -60,5 +60,16 @@
 <script src="/admin/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/admin/js/app.min.js"></script>
+
+<script type="text/javascript">
+  console.log('WORKS');
+    $('#title').on('blur', function() {
+      var theTitle = this.value.toLowerCase().trim(),
+      slugInput = $('#slug');
+      
+      slugInput.val(theTitle);
+    
+    });
+</script>
 </body>
 </html>

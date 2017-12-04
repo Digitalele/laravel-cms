@@ -116,3 +116,9 @@
 		<!-- /.content -->
 	</div>
 @endsection
+
+@section('script')
+	<script type="text/javascript">
+		
+	</script>
+@endsection
