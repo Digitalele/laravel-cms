@@ -1,7 +1,9 @@
 <html>
 <head></head>
-<body style="background: black; color: white">
+<body>
 
-
+<h1>new contact</h1>
+{{-- {{ $message }}
+<p>{{ $email }}</p> --}}
 </body>
 </html>

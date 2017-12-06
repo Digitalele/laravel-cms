@@ -5,6 +5,9 @@
 @section('content')
 
 	<div class="container-fluid">
+		@if (Session::has('success'))
+			<div class="alert alert-info">{{ Session::get('success') }}</div>
+		@endif
 		<div class="row">
 			<div class="col-md-3 col-md-offset-4">
 				<h1 class="text-center">Contact Me</h1>

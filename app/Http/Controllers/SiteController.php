@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Mail;
+use Session;
 
 class SiteController extends Controller
 {
@@ -49,9 +50,11 @@ class SiteController extends Controller
             $message->from($data['email']);
             $message->to('gabrieledolfi1992@gmail.com');
             $message->subject($data['subject']);
-
-            print_r($message);
         });
+
+        Session::flash('success', 'Your mail was sent!');
+
+        return redirect()->route('contact');
         
 
         // $email = $request->input('email');
