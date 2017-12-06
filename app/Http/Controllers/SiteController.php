@@ -19,7 +19,7 @@ class SiteController extends Controller
 
     public function getAbout()
     {
-        
+        return view('pages.about');
     }
 
 
