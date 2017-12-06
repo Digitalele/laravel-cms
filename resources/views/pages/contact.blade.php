@@ -14,13 +14,9 @@
 				<hr>
 				<form action="{{ route('contact') }}" method="post">
 					{{ csrf_field() }}
-					<div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+					<div class="form-group">
 						<label for="email">Email address</label>
 						<input type="email" class="form-control" id="email" name="email" placeholder="Email">
-
-						@if($errors->has('email'))
-							<span class="help-block">{{ $errors->first('email') }}</span>
-						@endif
 					</div>
 					<div class="form-group">
 						<label for="subject">Subject</label>

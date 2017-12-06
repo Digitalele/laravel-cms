@@ -3,7 +3,12 @@
 <body>
 
 <h1>new contact</h1>
-{{-- {{ $message }}
-<p>{{ $email }}</p> --}}
+
+<h3>{{  $subject  }}</h3>
+
+<strong>{{ $email }}</strong>
+
+
+<p>{{ $bodyMessage }}</p>
 </body>
 </html>

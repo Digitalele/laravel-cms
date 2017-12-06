@@ -40,7 +40,7 @@ class SiteController extends Controller
         $data = array(
             'email' => $request->email,   
             'subject' => $request->subject,   
-            'message' => $request->message   
+            'bodyMessage' => $request->message   
         );
 
         try{
@@ -61,28 +61,5 @@ class SiteController extends Controller
             print_r($e);
         }
 
-      
-
-        
-        
-
-        // $email = $request->input('email');
-        // $subject = $request->input('subject');
-        // $message = $request->input('message');
-
-       
-
-        // Mail::send('emails.contact', ['email' => $email, 'subject' => $subject, 'message' => $message], function ($message) use ($data)
-        // {
-  
-
-        //     $message->from($data['email']);
-
-        //     $message->to('gabrieledolfi1992@gmail.com');
-
-        //     //Add a subject
-        //     $message->subject("Hello from Scotch");
-
-        // });
     }
 }
