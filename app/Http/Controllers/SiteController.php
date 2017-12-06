@@ -43,18 +43,27 @@ class SiteController extends Controller
             'message' => $request->message   
         );
 
-
-
-        Mail::send('emails.contact', $data, function ($message) use ($data){
+        try{
+   
+            Mail::send('emails.contact', $data, function ($message) use ($data){
+                
+                $message->from($data['email']);
+                $message->to('gabrieledolfi1992@gmail.com');
+                $message->subject($data['subject']);
+            });
             
-            $message->from($data['email']);
-            $message->to('gabrieledolfi1992@gmail.com');
-            $message->subject($data['subject']);
-        });
+            Session::flash('success', 'Your mail was sent!');
 
-        Session::flash('success', 'Your mail was sent!');
+            return redirect()->route('contact');
 
-        return redirect()->route('contact');
+        }
+        catch(\Exception $e){
+            print_r($e);
+        }
+
+      
+
+        
         
 
         // $email = $request->input('email');
