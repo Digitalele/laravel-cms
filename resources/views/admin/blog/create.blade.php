@@ -117,7 +117,7 @@
 	</div>
 @endsection
 
-@section('scriptSlug')
+@section('scriptCreatePost')
 	<script type="text/javascript">
 
 		$('#title').on('blur', function() {
@@ -132,6 +132,10 @@
 
             slugInput.val(theSlug);
         });
+		
+		//Markdown editor
+        var simplemde1 = new SimpleMDE({ element: $("#excerpt")[0] });
+        var simplemde2 = new SimpleMDE({ element: $("#body")[0] });
 		
 	</script>
 @endsection
