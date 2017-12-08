@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+
     <meta charset="UTF-8">
     <title>@yield('title', 'Laravel CMS')</title>
 
@@ -11,4 +9,3 @@
 
     @yield('stylesheet')
 
-</head>

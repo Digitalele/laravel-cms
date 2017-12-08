@@ -8,6 +8,8 @@ use App\Http\Requests;
 use Mail;
 use Session;
 
+use Response;
+
 class SiteController extends Controller
 {
 
@@ -54,7 +56,9 @@ class SiteController extends Controller
             
             Session::flash('success', 'Your mail was sent!');
 
-            return redirect()->route('contact');
+            //return redirect()->route('contact');
+            //
+            return Response::json(['msg'=>'success'], 200);
 
         }
         catch(\Exception $e){

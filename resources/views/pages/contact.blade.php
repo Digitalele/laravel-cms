@@ -12,7 +12,7 @@
 			<div class="col-md-3 col-md-offset-4">
 				<h1 class="text-center">Contact Me</h1>
 				<hr>
-				<form action="{{ route('contact') }}" method="post">
+				<form action="{{ route('contact') }}" method="post" id="contact-form">
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label for="email">Email address</label>
@@ -43,6 +43,8 @@
 			</div>	
 		</div>
 	</div>
+
+	
 		
 @endsection
 

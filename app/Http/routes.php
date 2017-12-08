@@ -69,7 +69,7 @@ Route::group(['middleware' => ['web']], function () {
 
 
         Route::auth();
-        Route::get('/home', 'Admin\HomeController@index');
+        Route::get('/dashboard', 'Admin\HomeController@index');
         Route::resource('/admin/blog', 'Admin\BlogController');
 
 
@@ -79,9 +79,9 @@ Route::group(['middleware' => ['web']], function () {
         | Site Routes
         |-------------------------------------------------------------------------
         */
-        Route::get('/home', [
+        Route::get('/index', [
             'uses' => 'SiteController@getIndex',
-            'as'   => 'home'
+            'as'   => 'index'
         ]);
 
         Route::get('/about', [
