@@ -23,9 +23,7 @@
     <script src="/js/bootstrap.min.js"></script>
     
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment-with-locales.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+   
     
 
     {{-- Javascripts --}}

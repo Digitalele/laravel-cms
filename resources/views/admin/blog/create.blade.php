@@ -24,7 +24,7 @@
 		<!-- Main content -->
 		<section class="content">
 			<div class="row">
-			  <div class="col-xs-12">
+			  <div class="col-xs-8">
 				<div class="box">
 				
 				  <!-- /.box-header -->
@@ -72,15 +72,89 @@
 						@endif
 					</div>
 
-					<div class="form-group {{ $errors->has('published_at') ? 'has-error' : '' }}">
-						{!! Form::label('published_at', 'Published Date') !!}
-						{!! Form::date('published_at', null, ['class' => 'form-control', 'placeholder' => 'Y-m-d' ]) !!}
+					<hr>
 
-						@if($errors->has('published_at'))
-							<span class="help-block">{{ $errors->first('published_at') }}</span>
+				 	
+
+				  </div>
+				  <!-- /.box-body -->
+				</div>
+				<!-- /.box -->
+			 </div>
+
+			<div class="col-xs-4">
+				<div class="box">
+					<div class="box-header">
+						<h3 class="box-title">
+							Publish
+						</h3>
+					</div>
+					<div class="box-body">
+						<div class="form-group {{ $errors->has('published_at') ? 'has-error' : '' }}">
+                            {!! Form::label('published_at', 'Publish Date') !!}
+                            <div class='input-group date' id='datetimepicker1'>
+                                {!! Form::text('published_at', null, ['class' => 'form-control', 'placeholder' => 'Y-m-d H:i:s']) !!}
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+
+
+                            @if($errors->has('published_at'))
+                                <span class="help-block">{{ $errors->first('published_at') }}</span>
+                            @endif
+                    	</div>
+
+					</div>
+					<div class="box-footer clearfix">
+						<div class="pull-left">
+							<a href="#" class="btn btn-default">Save Draft</a>
+						</div>
+						<div class="pull-right">
+							{!! Form::submit('Publish', ['class' => 'btn btn-primary']) !!}
+						</div>
+					</div>
+				</div>
+
+				<div class="box">
+					<div class="box-header with-border">
+						<h3 class="box-title">
+							Images
+						</h3>
+					</div>
+					<div class="box-body text-center">
+						
+					<div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">
+						{!! Form::label('image', 'Feature Image') !!}
+						{!! Form::file('image') !!}
+
+						<div class="fileinput fileinput-new" data-provides="fileinput">
+							<div class  ="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+								<img src    ="http://placehold.it/200x150&text=No+Image" alt="...">
+							</div>
+								<div class  ="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+								<div>
+								<span class ="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span>{!! Form::file('image') !!}</span>
+								<a href     ="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+							</div>
+                        </div>
+
+						@if($errors->has('image'))
+							<span class="help-block">{{ $errors->first('image') }}</span>
 						@endif
 					</div>
 
+					</div>
+				</div>
+
+				<div class="box">
+					<div class="box-header with-border">
+						<h3 class="box-title">
+							Categories
+						</h3>
+					</div>
+					<div class="box-body">
+						
 					<div class="form-group {{ $errors->has('category_id') ? 'has-error' : '' }}">
 						{!! Form::label('category_id', 'Category') !!}
 						{!! Form::select('category_id', App\Category::pluck('title', 'id'), null, ['class' => 'form-control', 'placeholder' => 'Choose category']) !!}
@@ -90,26 +164,10 @@
 						@endif
 					</div>
 
-					<div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">
-						{!! Form::label('image', 'Feature Image') !!}
-						{!! Form::file('image') !!}
-
-						@if($errors->has('image'))
-							<span class="help-block">{{ $errors->first('image') }}</span>
-						@endif
 					</div>
-
-					<hr>
-
-					{!! Form::submit('Create new post', ['class' => 'btn btn-primary']) !!}
-
-				 	{!! Form::close() !!}
-
-				  </div>
-				  <!-- /.box-body -->
 				</div>
-				<!-- /.box -->
-			  </div>
+			</div>
+				{!! Form::close() !!}
 			</div>
 		  <!-- ./row -->
 		</section>
@@ -136,6 +194,11 @@
 		//Markdown editor
         var simplemde1 = new SimpleMDE({ element: $("#excerpt")[0] });
         var simplemde2 = new SimpleMDE({ element: $("#body")[0] });
+
+        $('#datetimepicker1').datetimepicker({
+            format: 'YYYY-MM-DD HH:mm:ss',
+            showClear: true
+        });
 		
 	</script>
 @endsection
