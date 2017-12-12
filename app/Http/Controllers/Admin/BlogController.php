@@ -48,15 +48,7 @@ class BlogController extends AdminController
      * @return \Illuminate\Http\Response
      */
     public function store(Requests\PostRequest $request)
-    {
-        // $this->validate($request, [
-        //     'title'       => 'required',
-        //     'slug'        => 'required|unique:posts',
-        //     'body'        => 'required',
-        //     'published_at'=> 'date_format:Y-m-d',
-        //     'category_id' => 'required'
-        // ]);
-        
+    {   
         //hanlde file 
         $data = $this->handleRequest($request);
         $request->user()->posts()->create($data);
@@ -118,7 +110,9 @@ class BlogController extends AdminController
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view("admin.blog.edit", compact('post'));
+
     }
 
     /**
