@@ -69,7 +69,7 @@ Route::group(['middleware' => ['web']], function () {
 
 
         Route::auth();
-        Route::get('/dashboard', 'Admin\HomeController@index');
+        Route::get('/admin/dashboard', 'Admin\HomeController@index');
         Route::resource('/admin/blog', 'Admin\BlogController');
 
 

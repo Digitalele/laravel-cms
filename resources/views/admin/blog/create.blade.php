@@ -27,14 +27,15 @@
 			  <div class="col-xs-8">
 				<div class="box">
 				
-				  <!-- /.box-header -->
-				  <div class="box-body ">
-				  
-				 	{!! Form::model($post, [
+				{!! Form::model($post, [
 						'method' => 'POST',
 						'route'  => 'admin.blog.store',
-						'files'  => true
+						'files'  => true,
+						'id' => 'post-from'
 				 	]) !!}
+
+				  <!-- /.box-header -->
+				  <div class="box-body ">
 
 					<div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
 						{!! Form::label('title') !!}
@@ -108,7 +109,7 @@
 					</div>
 					<div class="box-footer clearfix">
 						<div class="pull-left">
-							<a href="#" class="btn btn-default">Save Draft</a>
+							<a id="draft-btn" class="btn btn-default">Save Draft</a>
 						</div>
 						<div class="pull-right">
 							{!! Form::submit('Publish', ['class' => 'btn btn-primary']) !!}
@@ -126,16 +127,16 @@
 						
 					<div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">
 						{!! Form::label('image', 'Feature Image') !!}
-						{!! Form::file('image') !!}
+						
 
 						<div class="fileinput fileinput-new" data-provides="fileinput">
 							<div class  ="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-								<img src    ="http://placehold.it/200x150&text=No+Image" alt="...">
+								<img src="http://placehold.it/200x150&text=No+Image" alt="...">
 							</div>
-								<div class  ="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+								<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
 								<div>
 								<span class ="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span>{!! Form::file('image') !!}</span>
-								<a href     ="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+								<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
 							</div>
                         </div>
 
@@ -167,7 +168,7 @@
 					</div>
 				</div>
 			</div>
-				{!! Form::close() !!}
+			{!! Form::close() !!}
 			</div>
 		  <!-- ./row -->
 		</section>
@@ -199,6 +200,12 @@
             format: 'YYYY-MM-DD HH:mm:ss',
             showClear: true
         });
+
+        $('#draft-btn').click(function(e){
+        	e.preventDefault();
+        	$('#published_at').val("");
+        	$('#post-from').submit();
+        })
 		
 	</script>
 @endsection

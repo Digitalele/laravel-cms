@@ -15,12 +15,12 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li>
-          <a href="{{ url('/home') }}">
+          <a href="{{ url('/admin/dashboard') }}">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
         <li class="treeview">
-          <a href="#">
+          <a href="{{ route('admin.blog.index') }}">
             <i class="fa fa-pencil"></i>
             <span>Blog</span>
             <span class="pull-right-container">
