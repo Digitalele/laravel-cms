@@ -4,12 +4,14 @@
 
 namespace App;
 
-use Carbon\Carbon;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use GrahamCampbell\Markdown\Facades\Markdown;
+use Carbon\Carbon;
 
 class Post extends Model
 {
+    use SoftDeletes;
     //mass assign
     protected $fillable = ['title', 'slug', 'excerpt', 'body', 'published_at', 'category_id', 'image'];
 

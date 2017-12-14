@@ -139,6 +139,8 @@ class BlogController extends AdminController
      */
     public function destroy($id)
     {
-        //
+        Post::findOrFail($id)->delete();
+
+        return redirect('/admin/blog')->with('trash-message', ['Your post moved to trash', $id]);
     }
 }

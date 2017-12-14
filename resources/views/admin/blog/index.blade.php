@@ -34,11 +34,7 @@
 				  <!-- /.box-header -->
 				  <div class="box-body ">
 
-				  	@if(session('message'))
-						<div class="alert alert-info">
-							{{ session('message') }}
-						</div>
-				  	@endif
+				  	@include('admin.blog.message')
 				  
 				  	@if (! $posts->count())
 					  	<div class="alert alert-warning">
@@ -50,7 +46,6 @@
 						<thead>
 							<tr>
 								<td width="80">Action</td>
-								<td>Delete</td>
 								<td>Title</td>
 								<td width="120">Author</td>
 								<td width="150">Category</td>
@@ -62,14 +57,15 @@
 						  @foreach ($posts as $post)
 									<tr>
 										<td>
+										{!! Form::open(['method' => 'DELETE', 'route' => ['admin.blog.destroy', $post->id]]) !!}
 											<a href="{{ route('admin.blog.edit', $post->id) }}" class="btn btn-xs btn-default">
 												<i class="fa fa-edit"></i>
 											</a>
-										</td>
-										<td>
-											<a href="{{ route('admin.blog.destroy', $post->id) }}" class="btn btn-xs btn-danger">
-												<i class="fa fa-times"></i>
-											</a>
+
+											<button type="submit" class="btn btn-xs btn-danger">
+												<i class="fa fa-trash"></i>
+											</button>
+										{!! Form::close() !!}
 										</td>
 										<td>
 											{{ $post->title }}
