@@ -68,7 +68,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
 
   {{-- Admin create --}}
-  @yield('scriptCreatePost')
+@include('admin.blog.script')
 
 </body>
 </html>

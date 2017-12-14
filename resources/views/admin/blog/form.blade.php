@@ -82,34 +82,28 @@
 	</div>
 
 	<div class="box">
-		<div class="box-header with-border">
-			<h3 class="box-title">
-				Images
-			</h3>
-		</div>
-		<div class="box-body text-center">
-			
-		<div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">
-			{!! Form::label('image', 'Feature Image') !!}
-			
+        <div class="box-header with-border">
+            <h3 class="box-title">Feature Image</h3>
+        </div>
+        <div class="box-body text-center">
+            <div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                  <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                    <img src="{{ ($post->image_thumb_url) ? $post->image_thumb_url : 'http://placehold.it/200x150&text=No+Image' }}" alt="...">
+                  </div>
+                  <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                  <div>
+                    <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span>{!! Form::file('image') !!}</span>
+                    <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                  </div>
+                </div>
 
-			<div class="fileinput fileinput-new" data-provides="fileinput">
-				<div class  ="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-					<img src="{{ ($post->image_thumb_url) ? $post->image_thumb_url : 'http://placehold.it/200x150&text=No+Image'}}" alt="">
-				</div>
-					<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
-					<div>
-					<span class ="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span>{!! Form::file('image') !!}</span>
-					<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-				</div>
+                @if($errors->has('image'))
+                    <span class="help-block">{{ $errors->first('image') }}</span>
+                @endif
             </div>
-			@if($errors->has('image'))
-				<span class="help-block">{{ $errors->first('image') }}</span>
-			@endif
-		</div>
-
-		</div>
-	</div>
+        </div>
+    </div>
 
 	<div class="box">
 		<div class="box-header with-border">

@@ -31,7 +31,7 @@ class Post extends Model
     //mutator, set null if not insert
     public function setPublishedAtAttribute($value)
     {
-        $this->attributes['published_at'] = $value ?: null;
+        return $this->attributes['published_at'] = $value ?: null;
     }
     
 

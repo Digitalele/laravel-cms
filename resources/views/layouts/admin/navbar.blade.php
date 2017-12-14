@@ -23,20 +23,24 @@
 			@php $currentUser = Auth::user() @endphp
 
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-			  <img src="#" class="user-image" alt="{{ $currentUser->name }}">
+			  <img src="{{ 'http://placehold.it/200x150&text=No+Image'}}" class="user-image" alt="{{ $currentUser->name }}">
 			  <span class="hidden-xs">{{ $currentUser->name }}</span>
 			</a>
 			<ul class="dropdown-menu">
 			  <!-- User image -->
 			  <li class="user-header">
-				<img src="#" class="img-circle" alt="User Image">
+				<img src="{{ 'http://placehold.it/200x150&text=No+Image'}}" class="img-circle" alt="User Image">
 
 				<p>
 				  {{ $currentUser->name }}
 				  <small>Admin Member</small>
 				</p>
-				<small>Now date 22/12/07</small>
+				@php $currentDate = date('Y-m-d') @endphp
+				<small>Now date {{ $currentDate }}</small>
+
 			  </li>
+			  
+			  <br>
 			  <!-- Menu Footer-->
 			  <li class="user-footer">
 				<div class="pull-left">

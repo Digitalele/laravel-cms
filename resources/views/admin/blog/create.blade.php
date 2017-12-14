@@ -12,7 +12,7 @@
 		  </h1>
 		  <ol class="breadcrumb">
 				<li>
-					<a href="{{ url('/home') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
+					<a href="{{ url('/admin/dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
 				</li>
 				<li class="active">
 					<a href="{{ route('admin.blog.index') }}">Blog</a>
@@ -41,5 +41,5 @@
 	</div>
 @endsection
 
-@include('admin.blog.script')
+
 
