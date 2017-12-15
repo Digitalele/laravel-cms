@@ -143,4 +143,12 @@ class BlogController extends AdminController
 
         return redirect('/admin/blog')->with('trash-message', ['Your post moved to trash', $id]);
     }
+
+    public function restore($id)
+    {
+        $post = Post::withTrashed()->findOrFail($id);
+        $post->restore();
+        return redirect('/admin/blog')->with('message', 'You post has been moved from the trash!');
+
+    }
 }

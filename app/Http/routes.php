@@ -72,6 +72,12 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/admin/dashboard', 'Admin\HomeController@index');
         Route::resource('/admin/blog', 'Admin\BlogController');
 
+        //Restore
+        
+        Route::put('/admin/blog/{blog}', [
+            'uses' => 'Admin\BlogController@restore',
+            'as'   => 'admin.blog.restore'
+        ]);
 
 
         /*
