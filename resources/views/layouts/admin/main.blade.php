@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="/admin/css/skins/_all-skins.min.css">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="/admin/plugins/simplemde/simplemde.min.css">
+    <link rel="stylesheet" href="/admin/css/custom.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

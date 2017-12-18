@@ -68,7 +68,7 @@
 				  <!-- /.box-body -->
 				  <div class="box-footer clearfix">
 				  	<div class="pull-left">
-					  	{{ $posts->render() }}
+					  	{{ $posts->appends( Request::query() )->render() }}
 				  	</div>
 				  	<div class="pull-right">
 				  		<small>{{ $postCount }} {{ str_plural('Item', $postCount) }}</small>
