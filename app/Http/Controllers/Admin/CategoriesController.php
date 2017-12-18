@@ -19,7 +19,7 @@ class CategoriesController extends AdminController
     public function index()
     {
 
-		$categories = Category::orderBy('title')->paginate($this->limit);
+		$categories = Category::with('posts')->orderBy('title')->paginate($this->limit);
 
 		$categoriesCount = Category::count();
 

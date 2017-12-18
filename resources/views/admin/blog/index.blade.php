@@ -49,7 +49,7 @@
 				  <!-- /.box-header -->
 				  <div class="box-body ">
 
-				  	@include('admin.blog.message')
+				  	@include('admin.partials.message')
 				  
 				  	@if (! $posts->count())
 					  	<div class="alert alert-warning">
