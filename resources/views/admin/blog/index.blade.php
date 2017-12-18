@@ -26,9 +26,13 @@
 			<div class="row">
 			  <div class="col-xs-12">
 				<div class="box">
-					<div class="box-header">
+					<div class="box-header clearfix">
 						<div class="pull-left">
 							<a href="{{ route('admin.blog.create') }}" class="btn btn-success"><i class="fa fa-plus"></i>Add New</a>
+						</div>
+						<div class="pull-right" style="padding: 7px 7px 0 0;">
+							<a href="?status=all">All</a> <span class="pipe">|</span>
+							<a href="?status=trash">Trash</a>
 						</div>
 					</div>
 				  <!-- /.box-header -->
@@ -42,51 +46,13 @@
 					  	</div>
 				  	@else
 					
-					 <table class="table table-bordered">
-						<thead>
-							<tr>
-								<td width="80">Action</td>
-								<td>Title</td>
-								<td width="120">Author</td>
-								<td width="150">Category</td>
-								<td width="170">Date</td>
-							</tr>
-						</thead>
-						<tbody>
+						@if($onlyTrashed)
+							@include('admin.blog.table-trash')
+						@else
+							@include('admin.blog.table')
+						@endif
+					@endif
 
-						  @foreach ($posts as $post)
-									<tr>
-										<td>
-										{!! Form::open(['method' => 'DELETE', 'route' => ['admin.blog.destroy', $post->id]]) !!}
-											<a href="{{ route('admin.blog.edit', $post->id) }}" class="btn btn-xs btn-default">
-												<i class="fa fa-edit"></i>
-											</a>
-
-											<button type="submit" class="btn btn-xs btn-danger">
-												<i class="fa fa-trash"></i>
-											</button>
-										{!! Form::close() !!}
-										</td>
-										<td>
-											{{ $post->title }}
-										</td>
-										<td>
-											{{ $post->author->name }}
-										</td>
-										<td>
-											{{ $post->category->title }}
-										</td>
-										<td>
-											<abbr title="{{ $post->dateFormatted(true) }}">{{ $post->dateFormatted() }}</abbr>
-											{!! $post->publicationLabel() !!}
-										</td>
-								</tr>
-						  @endforeach
-
-							
-							</tbody>
-					 </table>
-					 @endif
 				  </div>
 				  <!-- /.box-body -->
 				  <div class="box-footer clearfix">

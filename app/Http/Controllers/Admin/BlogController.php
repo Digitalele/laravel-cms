@@ -23,11 +23,51 @@ class BlogController extends AdminController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    //request from url 
+    public function index(Request $request)
     {
-        $posts = Post::with('category', 'author')->latest()->paginate($this->limit);
-        $postCount = Post::count();
-        return view("admin.blog.index", compact('posts', 'postCount'));
+        $onlyTrashed = FALSE;
+
+        if (($status = $request->get('status')) && $status == 'trash')
+        {
+            $posts       = Post::onlyTrashed()->with('category', 'author')->latest()->paginate($this->limit);
+            $postCount   = Post::onlyTrashed()->count();
+            $onlyTrashed = TRUE;
+        }
+        elseif ($status == 'published')
+        {
+            $posts       = Post::published()->with('category', 'author')->latest()->paginate($this->limit);
+            $postCount   = Post::published()->count();
+        }
+        elseif ($status == 'scheduled')
+        {
+            $posts       = Post::scheduled()->with('category', 'author')->latest()->paginate($this->limit);
+            $postCount   = Post::scheduled()->count();
+        }
+        elseif ($status == 'draft')
+        {
+            $posts       = Post::draft()->with('category', 'author')->latest()->paginate($this->limit);
+            $postCount   = Post::draft()->count();
+        }
+        else
+        {
+            $posts       = Post::with('category', 'author')->latest()->paginate($this->limit);
+            $postCount   = Post::count();
+        }
+
+        $statusList = $this->statusList();
+
+        return view("admin.blog.index", compact('posts', 'postCount', 'onlyTrashed', 'statusList'));
+    }
+
+    private function statusList()
+    {
+        return [
+            'all'       => Post::count(),
+            'published' => Post::published()->count(),
+        
+            'trash'     => Post::onlyTrashed()->count(),
+        ];
     }
 
     /**
@@ -90,7 +130,6 @@ class BlogController extends AdminController
     }
 
 
-
     /**
      * Display the specified resource.
      *
@@ -115,6 +154,7 @@ class BlogController extends AdminController
 
     }
 
+
     /**
      * Update the specified resource in storage.
      *
@@ -131,6 +171,7 @@ class BlogController extends AdminController
         return redirect('/admin/blog')->with('message', 'Your post was updated successfully!');
     }
 
+
     /**
      * Remove the specified resource from storage.
      *
@@ -143,6 +184,15 @@ class BlogController extends AdminController
 
         return redirect('/admin/blog')->with('trash-message', ['Your post moved to trash', $id]);
     }
+
+
+    public function forceDestroy($id)
+    {
+        Post::withTrashed()->findOrFail($id)->forceDelete();
+
+        return redirect('admin/blog/?status=trash')->with('message', 'Your post has been deleted successfully!');
+    }
+
 
     public function restore($id)
     {

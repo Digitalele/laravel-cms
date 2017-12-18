@@ -73,10 +73,14 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('/admin/blog', 'Admin\BlogController');
 
         //Restore
-        
-        Route::put('/admin/blog/{blog}', [
+        Route::put('/admin/blog/restore/{blog}', [
             'uses' => 'Admin\BlogController@restore',
             'as'   => 'admin.blog.restore'
+        ]);
+
+        Route::delete('/admin/blog/force-destroy/{blog}', [
+            'uses' => 'Admin\BlogController@forceDestroy',
+            'as'   => 'admin.blog.force-destroy'
         ]);
 
 
