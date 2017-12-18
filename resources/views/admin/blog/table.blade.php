@@ -34,6 +34,7 @@
 					</td>
 					<td>
 						<abbr title="{{ $post->dateFormatted(true) }}">{{ $post->dateFormatted() }}</abbr>
+						{!! $post->publicationLabel() !!}
 					</td>
 				</tr>
 	@endforeach
@@ -41,3 +42,8 @@
 		
 	</tbody>
 </table>
+
+
+
+
+

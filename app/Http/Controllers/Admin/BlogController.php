@@ -65,7 +65,8 @@ class BlogController extends AdminController
         return [
             'all'       => Post::count(),
             'published' => Post::published()->count(),
-        
+            'scheduled' => Post::scheduled()->count(),
+            'draft'     => Post::draft()->count(),
             'trash'     => Post::onlyTrashed()->count(),
         ];
     }
@@ -165,8 +166,13 @@ class BlogController extends AdminController
     public function update(Requests\PostRequest $request, $id)
     {
         $post     = Post::findOrFail($id);
+        $oldImage = $post->image;
         $data     = $this->handleRequest($request);
         $post->update($data);
+
+        if ($oldImage !== $post->image) {
+            $this->removeImage($oldImage);
+        }
 
         return redirect('/admin/blog')->with('message', 'Your post was updated successfully!');
     }
@@ -188,8 +194,10 @@ class BlogController extends AdminController
 
     public function forceDestroy($id)
     {
-        Post::withTrashed()->findOrFail($id)->forceDelete();
+        $post = Post::withTrashed()->findOrFail($id);
+        $post->forceDelete();
 
+        $this->removeImage($post->image);
         return redirect('admin/blog/?status=trash')->with('message', 'Your post has been deleted successfully!');
     }
 
@@ -201,4 +209,21 @@ class BlogController extends AdminController
         return redirect('/admin/blog')->with('message', 'You post has been moved from the trash!');
 
     }
+
+
+    private function removeImage($image)
+    {
+        if ( ! empty($image) )
+        {
+            $imagePath     = $this->uploadPath . '/' . $image;
+            $ext           = substr(strrchr($image, '.'), 1);
+            $thumbnail     = str_replace(".{$ext}", "_thumb.{$ext}", $image);
+            $thumbnailPath = $this->uploadPath . '/' . $thumbnail;
+
+            if ( file_exists($imagePath) ) unlink($imagePath);
+            if ( file_exists($thumbnailPath) ) unlink($thumbnailPath);
+        }
+    }
+
+
 }

@@ -124,4 +124,18 @@ class Post extends Model
     }
 
 
+    public function scopeScheduled($query)
+    {   
+            //for time use carbon instead of NOW()
+        return $query->where('published_at', '>', Carbon::now());
+    }
+
+
+    public function scopeDraft($query)
+    {   
+            //for time use carbon instead of NOW()
+        return $query->whereNull('published_at');
+    }
+
+
 }

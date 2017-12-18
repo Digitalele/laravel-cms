@@ -31,8 +31,19 @@
 							<a href="{{ route('admin.blog.create') }}" class="btn btn-success"><i class="fa fa-plus"></i>Add New</a>
 						</div>
 						<div class="pull-right" style="padding: 7px 7px 0 0;">
-							<a href="?status=all">All</a> <span class="pipe">|</span>
-							<a href="?status=trash">Trash</a>
+							@php $links = [] @endphp  
+	                        @foreach($statusList as $key => $value)
+	                            @if($value)
+	                            @php 
+	                            	$selected = Request::get('status') == $key ? 'selected-status' : '' 
+	                            @endphp
+	                             @php
+	                             	$links[] = "<a class=\"{$selected}\" href=\"?status={$key}\">" . ucwords($key) . "({$value})</a>"
+	                             @endphp
+	                             	                     
+	                            @endif
+	                        @endforeach
+                        	{!! implode(' | ', $links) !!}
 						</div>
 					</div>
 				  <!-- /.box-header -->
