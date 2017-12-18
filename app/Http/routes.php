@@ -70,7 +70,12 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::auth();
         Route::get('/admin/dashboard', 'Admin\HomeController@index');
+        
+        //Index Blog
         Route::resource('/admin/blog', 'Admin\BlogController');
+        
+        //Index Categories
+        Route::resource('/admin/categories', 'Admin\CategoriesController');
 
         //Restore
         Route::put('/admin/blog/restore/{blog}', [

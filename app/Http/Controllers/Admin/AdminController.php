@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
+	protected $limit = 5;
    /**
      * Create a new controller instance.
      *
