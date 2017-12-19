@@ -69,7 +69,9 @@ class CategoriesController extends AdminController
      */
     public function edit($id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+        return view("admin.categories.edit", compact('category'));
     }
 
     /**
@@ -79,9 +81,11 @@ class CategoriesController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Requests\CategoryStoreRequest $request, $id)
+     public function update(Requests\CategoryUpdateRequest $request, $id)
     {
-        //
+        Category::findOrFail($id)->update($request->all());
+
+        return redirect("/admin/categories")->with("message", "Category was updated successfully!");
     }
 
     /**

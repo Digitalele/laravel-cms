@@ -13,7 +13,6 @@ class CategoryStoreRequest extends Request
      */
     public function authorize()
     {
-        //change this to true for abilitate
         return true;
     }
 
@@ -26,7 +25,7 @@ class CategoryStoreRequest extends Request
     {
         return [
             'title' => 'required|unique:categories|max:255',
-            'slug' => 'required|unique:categories|max:255',
+            'slug'  => 'required|unique:categories|max:255',
         ];
     }
 }
