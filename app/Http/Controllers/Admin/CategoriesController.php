@@ -33,7 +33,8 @@ class CategoriesController extends AdminController
      */
     public function create()
     {
-        //
+        $category = New Category();
+        return view("admin.categories.create", compact('category'));   
     }
 
     /**
@@ -42,9 +43,11 @@ class CategoriesController extends AdminController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\CategoryStoreRequest $request)
     {
-        //
+        Category::create($request->all());
+
+        return redirect("/admin/categories")->with("message", "New category created!");
     }
 
     /**
@@ -76,7 +79,7 @@ class CategoriesController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\CategoryStoreRequest $request, $id)
     {
         //
     }
